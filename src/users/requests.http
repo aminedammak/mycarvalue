@@ -5,3 +5,12 @@ Content-Type: application/json
     "email": "ahmded@fd.com",
     "password": "azerty123"
 }
+
+### Find a particular user with a given ID
+GET http://localhost:3000/auth/2
+
+### Find all users have a particular email
+GET http://localhost:3000/auth?email=amine@fd.com
+
+### Remove a particular user with a given ID
+DELETE http://localhost:3000/auth/12
