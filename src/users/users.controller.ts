@@ -21,6 +21,7 @@ import {
 } from 'src/interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
 import { AuthService } from './auth.service';
+import { CurrentUser } from './decorators/current-user.decorator';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -31,13 +32,15 @@ export class UsersController {
   ) {}
 
   @Get('/whoami')
-  whoAmi(@Session() session: any) {
-    if (!session.userId) {
-      throw new BadRequestException('No user session');
-    }
-    return this.userService.findOne(session.userId);
+  // whoAmi(@Session() session: any) {
+  //   if (!session.userId) {
+  //     throw new BadRequestException('No user session');
+  //   }
+  //   return this.userService.findOne(session.userId);
+  // }
+  whoAmi(@CurrentUser() user: string) {
+    return user;
   }
-
   @Post('/signup')
   async createUser(@Body() body: CreateUserDto, @Session() session: any) {
     const user = await this.authService.signUp(body.email, body.password);
