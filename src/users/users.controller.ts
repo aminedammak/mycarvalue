@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -29,6 +30,14 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
+  @Get('/whoami')
+  whoAmi(@Session() session: any) {
+    if (!session.userId) {
+      throw new BadRequestException('No user session');
+    }
+    return this.userService.findOne(session.userId);
+  }
+
   @Post('/signup')
   async createUser(@Body() body: CreateUserDto, @Session() session: any) {
     const user = await this.authService.signUp(body.email, body.password);
@@ -41,6 +50,11 @@ export class UsersController {
     const user = await this.authService.signIn(body.email, body.password);
     session.userId = user.id;
     return user;
+  }
+
+  @Post('/signout')
+  signOut(@Session() session: any) {
+    session.userId = null;
   }
 
   @Get('/session')
