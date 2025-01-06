@@ -28,6 +28,8 @@ export class AuthService {
   async signIn(email: string, password: string) {
     // Find a user with this email
     const [user] = await this.usersService.find(email);
+
+    console.log('findiing--------', user);
     if (!user) {
       throw new NotFoundException('email not found');
     }
@@ -40,6 +42,7 @@ export class AuthService {
 
     // check if the hashed password is equal to the one in the database
     if (hash.toString('hex') !== savedHash) {
+      console.log('wrong passsss');
       throw new BadRequestException('Wrong password');
     }
 
