@@ -30,4 +30,24 @@ describe('AppController (e2e)', () => {
         expect(email).toEqual(email);
       });
   });
+
+  it('Signup and the return the current user', async () => {
+    const email = 'hedi6@gmail.com';
+    const response = await request(app.getHttpServer())
+      .post('/auth/signup')
+      .send({
+        email,
+        password: 'azerty123',
+      })
+      .expect(201);
+
+    const cookie = response.get('Set-Cookie');
+
+    const { body } = await request(app.getHttpServer())
+      .get('/auth/whoami')
+      .set('Cookie', cookie)
+      .expect(200);
+
+    expect(body.email).toEqual(email);
+  });
 });
