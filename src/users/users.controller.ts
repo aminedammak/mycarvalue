@@ -22,7 +22,6 @@ import { CurrentUser } from './decorators/current-user.decorator';
 import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
 import { AuthGuard } from '../guards/auth.guard';
 
-@UseGuards(AuthGuard)
 @Controller('auth')
 @Serialize(UserDto)
 export class UsersController {
@@ -30,7 +29,7 @@ export class UsersController {
     private userService: UsersService,
     private authService: AuthService,
   ) {}
-
+  @UseGuards(AuthGuard)
   @Get('/whoami')
   // whoAmi(@Session() session: any) {
   //   if (!session.userId) {
