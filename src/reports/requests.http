@@ -1,0 +1,13 @@
+### Create a report
+POST http://localhost:3000/reports
+Content-Type: application/json
+
+{
+    "make":"Mercedes",
+    "model":"corola",
+    "year": 2001,
+    "lnt": 0,
+    "lat": 0,
+    "mileage": 100000,
+    "price": 20000
+}

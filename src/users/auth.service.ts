@@ -29,7 +29,6 @@ export class AuthService {
     // Find a user with this email
     const [user] = await this.usersService.find(email);
 
-    console.log('findiing--------', user);
     if (!user) {
       throw new NotFoundException('email not found');
     }
