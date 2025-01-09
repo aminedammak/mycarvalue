@@ -19,7 +19,7 @@ export class Report {
   year: number;
 
   @Column()
-  lnt: number;
+  lng: number;
 
   @Column()
   lat: number;

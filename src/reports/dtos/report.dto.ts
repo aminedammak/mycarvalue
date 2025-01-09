@@ -11,7 +11,7 @@ export class ReportDto {
   year: number;
 
   @Expose()
-  lnt: number;
+  lng: number;
 
   @Expose()
   lat: number;

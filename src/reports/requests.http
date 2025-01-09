@@ -3,13 +3,13 @@ POST http://localhost:3000/reports
 Content-Type: application/json
 
 {
-    "make":"Mercedes",
+    "make":"Toyota",
     "model":"corola",
     "year": 2001,
-    "lnt": 0,
-    "lat": 0,
-    "mileage": 100000,
-    "price": 20000
+    "lng": 20,
+    "lat": 76,
+    "mileage": 99000,
+    "price": 100
 }
 
 
@@ -20,3 +20,6 @@ content-type: application/json
 {
     "approved": true
 }
+
+### get estimate
+GET http://localhost:3000/reports?make=Toyota&model=corola&year=2004&lng=15&lat=76&mileage=100000
